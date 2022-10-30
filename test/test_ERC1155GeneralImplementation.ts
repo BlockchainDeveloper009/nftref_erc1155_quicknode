@@ -28,6 +28,18 @@ describe("Lock", function () {
             expect(await lock.unlockTime()).to.equal(unlockTime);
             });
      });
+     /*
+     https://bobbyhadz.com/blog/javascript-access-value-of-promise#:~:text=then()%20method%20to%20access,the%20promise%20as%20a%20parameter.
+     
+// 👇️ Example promise
+const p = Promise.resolve('hello');
 
+p.then(value => {
+  console.log(value); // 👉️ "hello"
+}).catch(err => {
+  console.log(err);
+});
+
+     */
 
 });
