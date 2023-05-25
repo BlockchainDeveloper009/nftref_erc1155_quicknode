@@ -3,7 +3,7 @@ import { anyValue } from "@nomicfoundation/hardhat-chai-matchers/withArgs";
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
-describe("Lock", function () {
+describe("ERC1155GeneralImplementation", function () {
     async function deployOneYearLockFixture() {
         const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
         const ONE_GWEI = 1_000_000_000;
@@ -14,10 +14,20 @@ describe("Lock", function () {
         // Contracts are deployed using the first signer/account by default
         const [owner, otherAccount] = await ethers.getSigners();
     
-        const Lock = await ethers.getContractFactory("ERC1155Token");
-        const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+          
+        const Lock = await ethers.getContractFactory("ERC1155GeneralImplementation");
+        const _names = ["test1","test2"];
+        const _ids = [1,2];
+        const lock = await Lock.deploy(
+          "testBaashaToken",
+          "",//uri
+          _names,
+          _ids
+
+        );
     
-        return { lock, unlockTime, lockedAmount, owner, otherAccount };
+        return { lock, _ids, _names, owner, otherAccount };
+
       }
 
       describe("Deployment", function () 
